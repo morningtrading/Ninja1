@@ -49,7 +49,7 @@ namespace NinjaTrader.NinjaScript.Strategies
         private double entryPrice = 0.0;
         private DateTime entryTime;
         private string direction;
-		private double sessionPnL = 666;
+		private double sessionPnL = 0;// back to zero default here
         private string filePath;
         private double lastPnL = 0;
 
