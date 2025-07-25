@@ -39,7 +39,7 @@ using System.Windows.Media;
 namespace NinjaTrader.NinjaScript.Strategies
 {
 	
-    public class newFFFrenkoEMATrialATR_2025_07_24_0 : Strategy
+    public class Strategy_FFF_two : Strategy
     {
         private EMA fastEMA;
         private EMA slowEMA;
@@ -117,7 +117,7 @@ namespace NinjaTrader.NinjaScript.Strategies
         {
             if (State == State.SetDefaults)
             {
-                Name = "newFFFrenkoEMATrialATR_2025_07_24_0";
+                Name = "Strategy_FFF_two";
               //  Calculate = Calculate.OnBarClose;
 				Calculate = Calculate.OnPriceChange;
                 IsOverlay = true;
@@ -127,7 +127,7 @@ namespace NinjaTrader.NinjaScript.Strategies
                 ATRMultiplier = 1.5;
 				minimumTicks = 10;
     // 10 for NQ, like 2 or 3 for ES
-				PositionSize = 3;	
+				PositionSize = 1;	// change to more for prop firms
 				dailyStopLoss=999;
 				dailyProfitTarget=2500;
 				tradeProfitTarget=400;
