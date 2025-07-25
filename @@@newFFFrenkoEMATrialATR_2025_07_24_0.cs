@@ -126,6 +126,7 @@ namespace NinjaTrader.NinjaScript.Strategies
                 ATRPeriod = 14;
                 ATRMultiplier = 1.5;
 				minimumTicks = 10;
+    // 10 for NQ, like 2 or 3 for ES
 				PositionSize = 3;	
 				dailyStopLoss=999;
 				dailyProfitTarget=2500;
