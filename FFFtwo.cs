@@ -154,9 +154,12 @@ namespace NinjaTrader.NinjaScript.Strategies
             if (CurrentBar < Math.Max(Math.Max(FastEMAPeriod, SlowEMAPeriod), ATRPeriod))
                 return;
 
-			
-				//		DefaultQuantity = PositionSize;
-			            // Get account values
+
+   
+
+
+            //		DefaultQuantity = PositionSize;
+            // Get account values
             double cashValue = account.Get(AccountItem.CashValue, Currency.UsDollar);
             double realizedPnL = account.Get(AccountItem.RealizedProfitLoss, Currency.UsDollar);
             double unrealizedPnLLL = account.Get(AccountItem.UnrealizedProfitLoss, Currency.UsDollar);
@@ -176,18 +179,29 @@ namespace NinjaTrader.NinjaScript.Strategies
 			
             // Create comprehensive display text
             string accountInfo = $"==STRAT FFF = ACCOUNT INFO ===\n" +
-                                $"Cash: {cashValue:C}\n" +
-                                $"Net Liquidation: {netLiquidation:C}\n" +
+//                              $"Cash: {cashValue:C}\n" +
+//                            $"Net Liquidation: {netLiquidation:C}\n" +
                                 $"Realized PnL: {realizedPnL:C}\n" +
                                 $"Unrealized PnL: {unrealizedPnLLL:C}\n" +
                                 $"Total PnL: {totalPnL:C}\n" +
-                                $"\n=== STRATEGY STATS ===\n" +
+//                                $"\n=== STRATEGY STATS ===\n" +
                     //          $"Strategy PnL: {strategyPnL:C}\n" +
                     //          $"Total Trades: {totalTrades}\n" +
                      //           $"Win Rate: {winRate:F1}%\n" +
                                 $"Position: {Position.MarketPosition}\n";
 	 
-           
+
+         // LOGIC OF EXITING WHEN OBJECTIVE OR MAX LOSS IS REACHED
+                if (totalPnL < - dailyStopLoss) return;
+                if (totalPnL > dailyProfitTarget) return;
+                if (unrealizedPnLLL > tradeProfitTarget) return;
+                if (unrealizedPnLLL < -1 * tradeStopLoss) return;
+
+            //
+
+
+
+
             // Choose color based on current trade PnL
             Brush textColor = unrealizedPnLLL >= 0 ? Brushes.LimeGreen : Brushes.Red;
             
